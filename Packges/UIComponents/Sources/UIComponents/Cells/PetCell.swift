@@ -97,9 +97,11 @@ public struct PetCell: View {
                     Text("|")
                         .foregroundColor(.init(appColor: .appTextPrimary))
                         .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    Text(tags.first!)
-                        .foregroundColor(.init(appColor: .appTextPrimary))
-                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                    if !tags.isEmpty {
+                        Text(tags.first!)
+                            .foregroundColor(.init(appColor: .appTextPrimary))
+                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                    }
                 }
             }
             HStack(spacing: 8) {

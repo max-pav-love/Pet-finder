@@ -8,9 +8,12 @@
 import Foundation
 
 public struct ErrorResponse: LocalizedError, Decodable {
-    public let message: String
+    public let type: String
+    public let status: Int
+    public let title: String
+    public let detail: String
     
     public var errorDescription: String? {
-        message
+        detail
     }
 }
