@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import UIComponents
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            PetCell(
+                name: "Parkinson",
+                tags: ["Playful"],
+                age: "2yrs",
+                distance: "381m away",
+                photo: Image("chevron.left"),
+                gender: .female,
+                lastSeen: "13 min ago"
+            ) { }
         }
-        .padding()
     }
 }
 
