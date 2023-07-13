@@ -61,79 +61,77 @@ public struct PetCell: View {
         Button {
             action()
         } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 16)
-                    .frame(height: 120)
-                    .foregroundColor(.init(appColor: .appLightBackground))
-                HStack(alignment: .center) {
-                    HStack(spacing: 18) {
-                        AppImage(url: photo)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .frame(width: 96, height: 96)
-                        petMainInfoView
-                    }
-                    VStack {
-                        petGenderView
-                            .padding(.vertical)
-                        lastSeenView
-                            .padding(.vertical)
-                    }
-                    .padding(.leading, 45)
-                }
-            }
-            .frame(height: 120)
-            .padding(.horizontal, 20)
+            label
         }
     }
     
-    private var petMainInfoView: some View {
-        VStack(alignment: .leading) {
-            VStack(spacing: 10) {
-                Text(name)
-                    .foregroundColor(.init(appColor: .appTextPrimary))
-                    .font(AppFonts.Sailec.medium.swiftUIFont(fixedSize: 16))
-                HStack {
-                    Text(age)
+    private var label: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(.init(appColor: .appLightBackground))
+
+            HStack {
+                AppImage(url: photo)
+                    .frame(width: 96, height: 96)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                
+                VStack(alignment: .leading) {
+                    Text(name)
                         .foregroundColor(.init(appColor: .appTextPrimary))
-                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    Text("|")
-                        .foregroundColor(.init(appColor: .appTextPrimary))
-                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    if !tags.isEmpty {
-                        Text(tags.first!)
+                        .font(AppFonts.Sailec.medium.swiftUIFont(fixedSize: 16))
+                    Spacer()
+                    HStack(spacing: 4) {
+                        Text(age)
                             .foregroundColor(.init(appColor: .appTextPrimary))
                             .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                        if !tags.isEmpty {
+                            Text("|")
+                                .foregroundColor(.init(appColor: .appTextPrimary))
+                                .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                            Text(tags.first!)
+                                .foregroundColor(.init(appColor: .appTextPrimary))
+                                .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                        }
+                    }
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    Spacer()
+                    HStack(spacing: 8) {
+                        Image("Pin", bundle: .module)
+                            .frame(width: 16, height: 16)
+                        Text(distance == nil ? "No data" : distance.unsafelyUnwrapped)
+                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                            .foregroundColor(.init(appColor: .appTextPrimary))
                     }
                 }
+                .padding(.vertical)
+                .padding(.leading)
+                
+                Spacer()
+
+                VStack(alignment: .trailing) {
+                    Text(gender.rawValue.capitalized(with: .current))
+                        .foregroundColor(gender.textColor)
+                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 5)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .foregroundColor(gender.backgroundColor)
+                        )
+                    Spacer()
+                    Text(lastSeen)
+                        .foregroundColor(.init(appColor: .appTextPrimary))
+                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
+                }
+                .padding(.vertical)
             }
-            HStack(spacing: 8) {
-                Image("Pin", bundle: .module)
-                    .frame(width: 16, height: 16)
-                Text(distance == nil ? "No data" : distance.unsafelyUnwrapped)
-                    .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    .foregroundColor(.init(appColor: .appTextPrimary))
-            }
-            .padding(.top, 12)
+            .padding(.horizontal)
         }
+        .frame(height: 120)
+        .padding(.horizontal)
     }
     
-    private var petGenderView: some View {
-        Text(gender.rawValue.uppercased())
-            .foregroundColor(gender.textColor)
-            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .foregroundColor(gender.backgroundColor)
-            )
-    }
-    
-    private var lastSeenView: some View {
-        Text(lastSeen)
-            .foregroundColor(.init(appColor: .appTextPrimary))
-            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-    }
 }
 
 struct PetCell_Previews: PreviewProvider {

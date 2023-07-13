@@ -16,17 +16,29 @@ struct AnimalsListView: View {
             if viewModel.animals.isEmpty {
                 ProgressView()
             } else {
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Hey Spikey!")
-                        Text("Adopt a new friend near you!")
+                VStack(alignment: .leading) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Hey Spikey!")
+                                .foregroundColor(.init(appColor: AppColors.appTextPrimary))
+                                .font(AppFonts.Sailec.bold.swiftUIFont(size: 20))
+                            Text("Adopt a new friend near you!")
+                                .foregroundColor(.init(appColor: AppColors.appTextPrimary))
+                                .font(AppFonts.Sailec.light.swiftUIFont(size: 16))
+                        }
+                        .padding(.top, 47)
+                        Spacer()
+                        ThemeChanger()
                     }
-                    .padding(.top, 47)
+                    Text("Nearby results")
+                        .foregroundColor(.init(appColor: AppColors.appTextPrimary))
+                        .font(AppFonts.Sailec.bold.swiftUIFont(size: 17))
+                        .padding(.top, 35)
+                        .padding(.bottom, 20)
                 }
-                Text("Nearby results")
-                    .padding(.top, 35)
+                .padding(.horizontal, 24)
                 
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     ForEach(viewModel.animals) { pet in
                         PetCell(
                             name: pet.name,
@@ -35,7 +47,7 @@ struct AnimalsListView: View {
                             distance: pet.distance,
                             photo: pet.photo,
                             gender: pet.gender,
-                            lastSeen: pet.lastSeen
+                            lastSeen: "13 min ago"
                         ) {
                             
                         }
@@ -43,6 +55,10 @@ struct AnimalsListView: View {
                 }
             }
         }
+        .background(
+            Color(appColor: .appBackground)
+            .ignoresSafeArea()
+        )
         .onAppear {
             // TODO: - Fix
             UserDefaults.standard.set(nil, forKey: "jwt_token")

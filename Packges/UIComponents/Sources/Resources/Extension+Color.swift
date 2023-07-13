@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+public extension Color {
     init(appColor: AppColors) {
         self.init(appColor.rawValue, bundle: .module)
     }

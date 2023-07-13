@@ -17,13 +17,12 @@ public struct AppImage: View {
     
     public var body: some View {
         if url == nil {
-            EmptyView()
+            Image("MockPet", bundle: .module)
         } else {
             KFImage(url)
                 .resizable()
                 .placeholder { ProgressView() }
-                .scaledToFit()
-                .frame(width: 96, height: 96)
+                .aspectRatio(contentMode: .fill)
         }
     }
 }

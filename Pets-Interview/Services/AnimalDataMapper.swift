@@ -15,7 +15,7 @@ protocol AnimalDataMapperProtocol {
 final class AnimalDataMapper: AnimalDataMapperProtocol {
     func map(_ data: AnimalsResponse) -> [AnimalMainInfoViewObject] {
         data.animals.map {
-             AnimalMainInfoViewObject(
+             return AnimalMainInfoViewObject(
                 name: $0.name,
                 gender: $0.gender == "Male" ? .male : .female,
                 age: $0.age,
