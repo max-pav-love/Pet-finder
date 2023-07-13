@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 public struct PetCell: View {
     public enum PetGender: String {
@@ -30,8 +31,8 @@ public struct PetCell: View {
     private let name: String
     private let tags: [String]
     private let age: String
-    private let distance: String
-    private let photo: Image
+    private let distance: String?
+    private let photo: URL?
     private let gender: PetGender
     private let lastSeen: String
     private let action: () -> Void
@@ -40,8 +41,8 @@ public struct PetCell: View {
         name: String,
         tags: [String],
         age: String,
-        distance: String,
-        photo: Image,
+        distance: String?,
+        photo: URL?,
         gender: PetGender,
         lastSeen: String,
         action: @escaping () -> Void
@@ -66,7 +67,8 @@ public struct PetCell: View {
                     .foregroundColor(.init(appColor: .appLightBackground))
                 HStack(alignment: .center) {
                     HStack(spacing: 18) {
-                        Image("Mock_Pet", bundle: .module)
+                        AppImage(url: photo)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                             .frame(width: 96, height: 96)
                         petMainInfoView
                     }
@@ -107,7 +109,7 @@ public struct PetCell: View {
             HStack(spacing: 8) {
                 Image("Pin", bundle: .module)
                     .frame(width: 16, height: 16)
-                Text(distance)
+                Text(distance == nil ? "No data" : distance.unsafelyUnwrapped)
                     .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
                     .foregroundColor(.init(appColor: .appTextPrimary))
             }
@@ -141,7 +143,7 @@ struct PetCell_Previews: PreviewProvider {
             tags: ["Playful"],
             age: "2yrs",
             distance: "381m away",
-            photo: Image("chevron.left"),
+            photo: nil,
             gender: .female,
             lastSeen: "13 min ago"
         ) { }

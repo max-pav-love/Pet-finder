@@ -19,9 +19,9 @@ final class AnimalDataMapper: AnimalDataMapperProtocol {
                 name: $0.name,
                 gender: $0.gender == "Male" ? .male : .female,
                 age: $0.age,
-                metersAway: "22",
-                lastSeen: "@2",
-                photo: URL(string: ""),
+                distance: $0.distance,
+                lastSeen: $0.published_at,
+                photo: $0.photos.isEmpty ? nil : $0.photos[0].medium,
                 tags: $0.tags
             )
         }
