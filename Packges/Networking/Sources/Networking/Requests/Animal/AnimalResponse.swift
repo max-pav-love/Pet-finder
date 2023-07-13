@@ -36,16 +36,3 @@ public struct AnimalResponse: Decodable {
     }
     public let animal: Animal
 }
-
-//type
-//photo
-//name
-//sex
-//meters away (location)
-//last seen
-//my story
-//age
-//color
-//weight
-//owner name
-//owner

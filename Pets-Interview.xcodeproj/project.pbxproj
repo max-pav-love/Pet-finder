@@ -11,6 +11,7 @@
 		B6E1EC5E2A5EFA8E00DDEDA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EC5D2A5EFA8E00DDEDA3 /* ContentView.swift */; };
 		B6E1EC602A5EFA8E00DDEDA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC5F2A5EFA8E00DDEDA3 /* Assets.xcassets */; };
 		B6E1EC642A5EFA8E00DDEDA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC632A5EFA8E00DDEDA3 /* Preview Assets.xcassets */; };
+		B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B6E1EC6D2A5F134400DDEDA3 /* Networking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +42,7 @@
 				B6E1EC6A2A5EFB3900DDEDA3 /* Packges */,
 				B6E1EC5A2A5EFA8E00DDEDA3 /* Pets-Interview */,
 				B6E1EC592A5EFA8E00DDEDA3 /* Products */,
+				B6E1EC6C2A5F134400DDEDA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +82,13 @@
 			path = Packges;
 			sourceTree = "<group>";
 		};
+		B6E1EC6C2A5F134400DDEDA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,6 +105,9 @@
 			dependencies = (
 			);
 			name = "Pets-Interview";
+			packageProductDependencies = (
+				B6E1EC6D2A5F134400DDEDA3 /* Networking */,
+			);
 			productName = "Pets-Interview";
 			productReference = B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +383,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6E1EC6D2A5F134400DDEDA3 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6E1EC502A5EFA8E00DDEDA3 /* Project object */;
 }
