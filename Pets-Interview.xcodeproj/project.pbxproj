@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B69ABE972A5FE3CB0031C89D /* UIComponents */; };
 		B6E1EC5C2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EC5B2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift */; };
 		B6E1EC5E2A5EFA8E00DDEDA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EC5D2A5EFA8E00DDEDA3 /* ContentView.swift */; };
 		B6E1EC602A5EFA8E00DDEDA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC5F2A5EFA8E00DDEDA3 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B69ABE962A5FE1B50031C89D /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIComponents; sourceTree = "<group>"; };
 		B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pets-Interview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E1EC5B2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets_InterviewApp.swift; sourceTree = "<group>"; };
 		B6E1EC5D2A5EFA8E00DDEDA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */,
 				B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +80,7 @@
 		B6E1EC6A2A5EFB3900DDEDA3 /* Packges */ = {
 			isa = PBXGroup;
 			children = (
+				B69ABE962A5FE1B50031C89D /* UIComponents */,
 				B6E1EC6B2A5EFB5400DDEDA3 /* Networking */,
 			);
 			path = Packges;
@@ -107,6 +111,7 @@
 			name = "Pets-Interview";
 			packageProductDependencies = (
 				B6E1EC6D2A5F134400DDEDA3 /* Networking */,
+				B69ABE972A5FE3CB0031C89D /* UIComponents */,
 			);
 			productName = "Pets-Interview";
 			productReference = B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */;
@@ -385,6 +390,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B69ABE972A5FE3CB0031C89D /* UIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIComponents;
+		};
 		B6E1EC6D2A5F134400DDEDA3 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
