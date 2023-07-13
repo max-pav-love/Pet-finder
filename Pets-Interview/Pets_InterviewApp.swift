@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import UIComponents
 
 @main
 struct Pets_InterviewApp: App {
+    
+    init() {
+        AppFonts.registerAllCustomFonts()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

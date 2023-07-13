@@ -14,6 +14,8 @@ let package = Package(
     targets: [
         .target(
             name: "UIComponents",
-            path: "Sources"),
+            path: "Sources",
+            resources: [.process("Resources/Fonts")]
+        ),
     ]
 )
