@@ -9,33 +9,189 @@ import SwiftUI
 import UIComponents
 
 struct AnimalDetailView: View {
-    private let animal: AnimalMainInfoViewObject
+    @Environment(\.presentationMode) private var presentationMode
+    private let animal: AnimalViewObject
     
-    init(animal: AnimalMainInfoViewObject) {
+    init(animal: AnimalViewObject) {
         self.animal = animal
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            AppImage(url: URL(string: ""))
-                .frame(width: UIScreen.main.bounds.width, height: 346)
-            ScrollView {
-                HStack {
-                    PetMainInfoStack(
-                        stackType: .detail(lastSeen: "22"),
-                        metersAway: "12 m",
-                        name: "Peterson"
-                    )
-                    Spacer()
-                    GenderStack(
-                        gender: .female,
-                        additionalText: "2yrs | Playful"
-                    )
+        VStack(spacing: 0) {
+            ZStack(alignment: .top) {
+                AppImage(url: animal.photo)
+                    .clipped()
+                    .frame(width: UIScreen.main.bounds.width)
+                    .frame(minHeight: 260)
+                    .edgesIgnoringSafeArea(.top)
+                header
+            }
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    mainInfo
+                    animalInfo
+                    quickInfoCells
+                    ownerInfo
+                    
+                    ActionButton(title: "Adopt me") { }
+                        .padding(.vertical, 35)
                 }
                 .padding(.horizontal, 24)
+                .padding(.vertical, 35)
             }
+            Spacer()
+        }
+        .navigationBarHidden(true)
+        .background(Color(appColor: .appBackground))
+        .edgesIgnoringSafeArea(.bottom)
+        
+//        VStack(alignment: .leading) {
+//            ZStack(alignment: .top) {
+//                AppImage(url: animal.photo)
+//                    .frame(width: UIScreen.main.bounds.width, height: 350)
+//                header
+//            }
+//            ScrollView(showsIndicators: false) {
+//                mainInfo
+//                animalInfo
+//                quickInfoCells
+//                ownerInfo
+//                ActionButton(title: "Adopt me") { }
+//                    .padding(.top, 56)
+//                    .padding(.bottom, 64)
+//            }
+//            .padding(.horizontal, 24)
+//            .padding(.bottom, 16)
+//        }
+//        .background(Color(appColor: .appBackground))
+//        .navigationBarBackButtonHidden(true)
+//        .ignoresSafeArea()
+    }
+    
+    private var oldBody: some View {
+        VStack(alignment: .leading) {
+            ZStack(alignment: .top) {
+                AppImage(url: animal.photo)
+                    .frame(width: UIScreen.main.bounds.width, height: 350)
+                header
+            }
+            ScrollView(showsIndicators: false) {
+                mainInfo
+                animalInfo
+                quickInfoCells
+                ownerInfo
+                ActionButton(title: "Adopt me") { }
+                    .padding(.top, 56)
+                    .padding(.bottom, 64)
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 16)
         }
         .background(Color(appColor: .appBackground))
+        .navigationBarBackButtonHidden(true)
+        .ignoresSafeArea()
+    }
+    
+    private var header: some View {
+            HStack {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(appImage: .Left)
+                        .frame(width: 24, height: 24)
+                }
+                
+                Spacer()
+                
+                Button {
+                } label: {
+                    Image(appImage: .Heart)
+                        .frame(width: 24, height: 24)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top)
+    }
+    
+    private var mainInfo: some View {
+        HStack {
+            PetMainInfoStack(
+                stackType: .detail(lastSeen: animal.publishedAt),
+                metersAway: animal.distance,
+                name: animal.name
+            )
+            Spacer()
+            GenderStack(
+                gender: animal.gender,
+                additionalText: animal.tags.filter { $0.count <= 8 }.joined(separator: " | ")
+            )
+        }
+    }
+    
+    private var animalInfo: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("My Story")
+                .font(AppFonts.Sailec.bold.swiftUIFont(size: 16))
+                .foregroundColor(.init(appColor: .appTextPrimary))
+            Text(animal.description)
+                .font(AppFonts.Sailec.regular.swiftUIFont(size: 14))
+                .foregroundColor(.init(appColor: .appTextSecondary))
+        }
+        .padding(.top, 36)
+    }
+    
+    private var quickInfoCells: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Quick Info")
+                .font(AppFonts.Sailec.bold.swiftUIFont(size: 16))
+                .foregroundColor(.init(appColor: .appTextPrimary))
+            HStack {
+                QuickInfoCell(title: animal.age, description: "Age")
+                Spacer()
+                QuickInfoCell(title: animal.color, description: "Color")
+                Spacer()
+                QuickInfoCell(title: animal.size, description: "Size")
+            }
+        }
+        .padding(.top, 36)
+    }
+    
+    private var ownerInfo: some View {
+        VStack(alignment: .leading) {
+            Text("Owner Info")
+                .font(AppFonts.Sailec.bold.swiftUIFont(size: 16))
+                .foregroundColor(.init(appColor: .appTextPrimary))
+            HStack {
+                Image(appImage: .No_Image)
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .cornerRadius(32)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(animal.ownersEmail ?? "")
+                        .font(AppFonts.Sailec.medium.swiftUIFont(size: 14))
+                        .foregroundColor(.init(appColor: .appTextPrimary))
+                    Text(animal.ownersPhone ?? "")
+                        .font(AppFonts.Sailec.regular.swiftUIFont(size: 12))
+                        .foregroundColor(.init(appColor: .appTextSecondary))
+                }
+                .padding(.trailing, 16)
+                
+                Spacer()
+                
+                Button {
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 32)
+                            .fill(Color(appColor: .appBlue))
+                            .frame(width: 40, height: 40)
+                        Image(appImage: .Messanger)
+                            .resizable()
+                            .frame(width: 17, height: 17)
+                    }
+                }
+            }
+        }
+        .padding(.top, 36)
     }
     
 }
@@ -46,12 +202,17 @@ struct AnimalDetailView_Previews: PreviewProvider {
             animal: .init(
                 id: 1,
                 name: "22",
+                description: "Description",
                 gender: .female,
                 age: "21",
                 distance: "12",
-                lastSeen: "12",
+                publishedAt: "12",
                 photo: nil,
-                tags: []
+                tags: [],
+                ownersPhone: "+222",
+                ownersEmail: "+111",
+                color: "Red",
+                size: "Big"
             )
         )
     }

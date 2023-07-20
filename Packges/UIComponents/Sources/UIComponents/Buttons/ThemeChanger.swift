@@ -17,7 +17,7 @@ public struct ThemeChanger: View {
         Button {
             preferredColorScheme(scheme == .dark ? .light : .light)
         } label: {
-            Image(scheme == .dark ? "Dark" : "Light", bundle: .module)
+            Image(appImage: scheme == .dark ? .Dark : .Light)
         }
         .environment(\.colorScheme, scheme == .dark ? .light : .dark)
     }

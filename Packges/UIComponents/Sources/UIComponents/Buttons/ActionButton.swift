@@ -27,7 +27,6 @@ public struct ActionButton: View {
                     .foregroundColor(.white)
             }
             .frame(height: 52)
-            .padding(.horizontal, 28)
         }
     }
 }

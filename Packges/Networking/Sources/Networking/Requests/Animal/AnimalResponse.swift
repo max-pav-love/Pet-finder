@@ -29,7 +29,7 @@ public struct AnimalResponse: Decodable {
         public let gender: String
         public let size: String
         public let name: String
-        public let description: String
+        public let description: String?
         public let photos: [String: String]
         public let status: String
         public let contact: Contact

@@ -59,7 +59,7 @@ public struct PetMainInfoStack: View {
     }
     private var distanceStack: some View {
         HStack(spacing: 8) {
-            Image("Pin", bundle: .module)
+            Image(appImage: .Pin)
                 .frame(width: 16, height: 16)
             Text(metersAway == nil ? "??? m away" : metersAway.unsafelyUnwrapped)
                 .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))

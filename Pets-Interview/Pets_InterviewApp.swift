@@ -12,10 +12,6 @@ import Networking
 @main
 struct Pets_InterviewApp: App {
     
-    init() {
-        AppFonts.registerAllCustomFonts()
-    }
-    
     var body: some Scene {
         WindowGroup {
             AnimalsListView()

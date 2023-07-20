@@ -56,8 +56,15 @@ struct AnimalsListView: View {
                                     distance: pet.distance,
                                     photo: pet.photo,
                                     gender: pet.gender,
-                                    lastSeen: "13 min ago"
-                                ) { }
+                                    publishedAt: pet.publishedAt
+                                )
+                                .onAppear {
+                                    Task {
+                                        if pet == viewModel.animals.last {
+                                            await viewModel.loadMoreContent(currentItem: pet)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

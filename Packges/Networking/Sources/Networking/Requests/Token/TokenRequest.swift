@@ -16,8 +16,8 @@ public struct TokenRequest: RequestProtocol {
     
     public func parameters() -> [String : Any]? {
         [
-            "client_id": Constants.CLIENT_ID,
-            "client_secret": Constants.CLIENT_SECRET,
+            "client_id": NetworkConstants.CLIENT_ID,
+            "client_secret": NetworkConstants.CLIENT_SECRET,
             "grant_type": "client_credentials"
         ]
     }

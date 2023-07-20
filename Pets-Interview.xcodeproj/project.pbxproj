@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B65C37F52A605C3300BB4B36 /* AnimalsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C37F42A605C3300BB4B36 /* AnimalsListView.swift */; };
-		B65C37FA2A60614C00BB4B36 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B65C37F92A60614C00BB4B36 /* Kingfisher */; };
 		B65C37FC2A6133AF00BB4B36 /* AnimalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C37FB2A6133AF00BB4B36 /* AnimalDetailView.swift */; };
-		B65C37FE2A616BF800BB4B36 /* AnimalDetailViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C37FD2A616BF800BB4B36 /* AnimalDetailViewObject.swift */; };
 		B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B69ABE972A5FE3CB0031C89D /* UIComponents */; };
 		B69ABEAC2A603C440031C89D /* AnimalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEAB2A603C440031C89D /* AnimalsViewModel.swift */; };
 		B69ABEAF2A603D160031C89D /* AnimalDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEAE2A603D160031C89D /* AnimalDataMapper.swift */; };
-		B69ABEB12A6053F20031C89D /* AnimalMainInfoViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEB02A6053F20031C89D /* AnimalMainInfoViewObject.swift */; };
+		B69ABEB12A6053F20031C89D /* AnimalViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEB02A6053F20031C89D /* AnimalViewObject.swift */; };
 		B6E1EC5C2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EC5B2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift */; };
 		B6E1EC602A5EFA8E00DDEDA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC5F2A5EFA8E00DDEDA3 /* Assets.xcassets */; };
 		B6E1EC642A5EFA8E00DDEDA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC632A5EFA8E00DDEDA3 /* Preview Assets.xcassets */; };
@@ -24,11 +22,10 @@
 /* Begin PBXFileReference section */
 		B65C37F42A605C3300BB4B36 /* AnimalsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListView.swift; sourceTree = "<group>"; };
 		B65C37FB2A6133AF00BB4B36 /* AnimalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailView.swift; sourceTree = "<group>"; };
-		B65C37FD2A616BF800BB4B36 /* AnimalDetailViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewObject.swift; sourceTree = "<group>"; };
 		B69ABE962A5FE1B50031C89D /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIComponents; sourceTree = "<group>"; };
 		B69ABEAB2A603C440031C89D /* AnimalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsViewModel.swift; sourceTree = "<group>"; };
 		B69ABEAE2A603D160031C89D /* AnimalDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDataMapper.swift; sourceTree = "<group>"; };
-		B69ABEB02A6053F20031C89D /* AnimalMainInfoViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalMainInfoViewObject.swift; sourceTree = "<group>"; };
+		B69ABEB02A6053F20031C89D /* AnimalViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalViewObject.swift; sourceTree = "<group>"; };
 		B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pets-Interview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E1EC5B2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets_InterviewApp.swift; sourceTree = "<group>"; };
 		B6E1EC5F2A5EFA8E00DDEDA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B65C37FA2A60614C00BB4B36 /* Kingfisher in Frameworks */,
 				B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */,
 				B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */,
 			);
@@ -79,8 +75,7 @@
 		B69ABEA62A603BF20031C89D /* ViewObjects */ = {
 			isa = PBXGroup;
 			children = (
-				B69ABEB02A6053F20031C89D /* AnimalMainInfoViewObject.swift */,
-				B65C37FD2A616BF800BB4B36 /* AnimalDetailViewObject.swift */,
+				B69ABEB02A6053F20031C89D /* AnimalViewObject.swift */,
 			);
 			path = ViewObjects;
 			sourceTree = "<group>";
@@ -169,7 +164,6 @@
 			packageProductDependencies = (
 				B6E1EC6D2A5F134400DDEDA3 /* Networking */,
 				B69ABE972A5FE3CB0031C89D /* UIComponents */,
-				B65C37F92A60614C00BB4B36 /* Kingfisher */,
 			);
 			productName = "Pets-Interview";
 			productReference = B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */;
@@ -200,7 +194,6 @@
 			);
 			mainGroup = B6E1EC4F2A5EFA8E00DDEDA3;
 			packageReferences = (
-				B65C37F82A60614C00BB4B36 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B6E1EC592A5EFA8E00DDEDA3 /* Products */;
 			projectDirPath = "";
@@ -229,11 +222,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B69ABEAC2A603C440031C89D /* AnimalsViewModel.swift in Sources */,
-				B69ABEB12A6053F20031C89D /* AnimalMainInfoViewObject.swift in Sources */,
+				B69ABEB12A6053F20031C89D /* AnimalViewObject.swift in Sources */,
 				B65C37F52A605C3300BB4B36 /* AnimalsListView.swift in Sources */,
 				B69ABEAF2A603D160031C89D /* AnimalDataMapper.swift in Sources */,
 				B6E1EC5C2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift in Sources */,
-				B65C37FE2A616BF800BB4B36 /* AnimalDetailViewObject.swift in Sources */,
 				B65C37FC2A6133AF00BB4B36 /* AnimalDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,23 +447,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		B65C37F82A60614C00BB4B36 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = exactVersion;
-				version = 7.8.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		B65C37F92A60614C00BB4B36 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B65C37F82A60614C00BB4B36 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		B69ABE972A5FE3CB0031C89D /* UIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIComponents;

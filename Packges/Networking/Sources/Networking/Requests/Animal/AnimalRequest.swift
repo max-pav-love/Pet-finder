@@ -14,7 +14,7 @@ public struct AnimalRequest: RequestProtocol {
     
     public init(id: Int) {
         self.id = id
-        self.endpoint = .animal(id: id)
+        self.endpoint = .token
     }
     
     public func parameters() -> [String : Any]? { nil }
