@@ -8,11 +8,14 @@
 import Foundation
 
 public enum Endpoint {
+    case token
     case animal(id: Int)
     case animals
     
     var path: String {
         switch self {
+        case .token:
+            return "oauth2/token"
         case .animal(let id):
             return "animals/\(id)"
         case .animals:
@@ -23,6 +26,8 @@ public enum Endpoint {
     var apiUrl: URL {
         let url = Self.host.appendingPathComponent("v2/")
         switch self {
+        case .token:
+            return url.appendingPathComponent(path)
         case .animal:
             return url.appendingPathComponent(path)
         case .animals:

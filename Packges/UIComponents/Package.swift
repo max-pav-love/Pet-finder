@@ -11,9 +11,15 @@ let package = Package(
             name: "UIComponents",
             targets: ["UIComponents"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/onevcat/Kingfisher.git", exact: .init(7, 8, 1))
+    ],
     targets: [
         .target(
             name: "UIComponents",
+            dependencies: [
+                "Kingfisher"
+            ],
             path: "Sources",
             resources: [.process("Resources/Fonts")]
         ),

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIComponents
+import Networking
 
 @main
 struct Pets_InterviewApp: App {
@@ -17,7 +18,7 @@ struct Pets_InterviewApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AnimalsListView()
         }
     }
 }

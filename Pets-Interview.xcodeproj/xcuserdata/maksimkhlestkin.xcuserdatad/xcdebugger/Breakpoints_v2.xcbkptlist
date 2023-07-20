@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B4C92667-92B7-44F4-ACD1-F986258C944D"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF503099-3154-4142-887F-E7A7861A0646"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Packges/Networking/Sources/Networking/RequestSender/RequestSender.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "send(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E7D92858-068B-44F4-8B86-AA0390EEA444"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Packges/Networking/Sources/Networking/RequestSender/RequestSender.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "sendTokenRequest()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E7D92858-068B-44F4-8B86-AA0390EEA444 - b37a7927c5979c6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Networking.RequestSender.sendTokenRequest() async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Packges/Networking/Sources/Networking/RequestSender/RequestSender.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "E7D92858-068B-44F4-8B86-AA0390EEA444 - b37a7927c5979c6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Networking.RequestSender.sendTokenRequest() async -&gt; Swift.Optional&lt;Swift.Error&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Packges/Networking/Sources/Networking/RequestSender/RequestSender.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "288">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "941C40B6-8DCC-4C13-8A88-DD98A484A302"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pets-Interview/Services/AnimalDataMapper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "map(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "941C40B6-8DCC-4C13-8A88-DD98A484A302 - 5d64ae9d7fc16c3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Networking.AnimalsResponse.Animal) -&gt; Pets_Interview.AnimalMainInfoViewObject in Pets_Interview.AnimalDataMapper.map(Networking.AnimalsResponse) -&gt; Swift.Array&lt;Pets_Interview.AnimalMainInfoViewObject&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Pets-Interview/Services/AnimalDataMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "620">
+               </Location>
+               <Location
+                  uuid = "941C40B6-8DCC-4C13-8A88-DD98A484A302 - 5d64ae9d7fc16c5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Networking.AnimalsResponse.Animal) -&gt; Pets_Interview.AnimalMainInfoViewObject in Pets_Interview.AnimalDataMapper.map(Networking.AnimalsResponse) -&gt; Swift.Array&lt;Pets_Interview.AnimalMainInfoViewObject&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Pets-Interview/Services/AnimalDataMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1092">
+               </Location>
+               <Location
+                  uuid = "941C40B6-8DCC-4C13-8A88-DD98A484A302 - 5d64ae9d7fc16c5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Networking.AnimalsResponse.Animal) -&gt; Pets_Interview.AnimalMainInfoViewObject in Pets_Interview.AnimalDataMapper.map(Networking.AnimalsResponse) -&gt; Swift.Array&lt;Pets_Interview.AnimalMainInfoViewObject&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Pets-Interview/Services/AnimalDataMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1108">
+               </Location>
+               <Location
+                  uuid = "941C40B6-8DCC-4C13-8A88-DD98A484A302 - 5d64ae9d7fc16f99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Networking.AnimalsResponse.Animal) -&gt; Pets_Interview.AnimalMainInfoViewObject in Pets_Interview.AnimalDataMapper.map(Networking.AnimalsResponse) -&gt; Swift.Array&lt;Pets_Interview.AnimalMainInfoViewObject&gt;"
+                  moduleName = "Pets-Interview"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maksimkhlestkin/Documents/Pets-Interview/Pets-Interview/Pets-Interview/Services/AnimalDataMapper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "384">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

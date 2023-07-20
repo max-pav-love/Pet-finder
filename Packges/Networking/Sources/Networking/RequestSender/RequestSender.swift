@@ -9,6 +9,7 @@ import Foundation
 
 public protocol RequestSenderProtocol {
     func send<Request: RequestProtocol>(request: Request) async -> Result<Request.Response, Error>
+    func sendTokenRequest() async -> Error?
 }
 
 public final class RequestSender: RequestSenderProtocol {
@@ -70,8 +71,20 @@ public final class RequestSender: RequestSenderProtocol {
         } catch {
             print("!Error!: \(error)")
             print(" /= RequestSender =/ ")
-            let uiError = ErrorResponse(message: "Network error§")
-            return .failure(uiError)
+            return .failure(error)
+        }
+    }
+    
+    public func sendTokenRequest() async -> Error? {
+        guard UserDefaults.standard.value(forKey: "jwt_token") == nil else { return nil }
+        let request = TokenRequest()
+        let result = await send(request: request)
+        switch result {
+        case let .success(token):
+            UserDefaults.standard.set(token.access_token, forKey: "jwt_token")
+            return nil
+        case let .failure(error):
+            return error
         }
     }
     
@@ -116,5 +129,5 @@ public final class RequestSender: RequestSenderProtocol {
     private func getToken() -> String? {
         UserDefaults.standard.string(forKey: "jwt_token")
     }
-    
+        
 }

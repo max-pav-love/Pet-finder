@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppColors: String {
+public enum AppColors: String {
     case appBackground
     case appLightBackground
     case appBlue

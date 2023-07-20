@@ -15,12 +15,15 @@ public struct AnimalsResponse: Decodable {
             public let large: URL
             public let full: URL
         }
+        public let id: Int
         public let gender: String
         public let age: String
         public let size: String
         public let name: String
         public let photos: [Photos]
         public let tags: [String]
+        public let distance: String?
+        public let published_at: String
     }
     public let animals: [Animal]
 }
