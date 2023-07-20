@@ -17,7 +17,9 @@ public struct AppImage: View {
     
     public var body: some View {
         if url == nil {
-            Image("MockPet", bundle: .module)
+            Image("No_Image", bundle: .module)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
         } else {
             KFImage(url)
                 .resizable()

@@ -15,6 +15,7 @@ public struct AnimalsResponse: Decodable {
             public let large: URL
             public let full: URL
         }
+        public let id: Int
         public let gender: String
         public let age: String
         public let size: String

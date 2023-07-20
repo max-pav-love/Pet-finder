@@ -9,24 +9,6 @@ import SwiftUI
 import Kingfisher
 
 public struct PetCell: View {
-    public enum PetGender: String {
-        case male
-        case female
-        
-        var backgroundColor: Color {
-            switch self {
-            case .male: return .init(appColor: .appBlueLight)
-            case .female: return .init(appColor: .appRedLight)
-            }
-        }
-        
-        var textColor: Color {
-            switch self {
-            case .male: return .init(appColor: .appTextBlue)
-            case .female: return .init(appColor: .appRed)
-            }
-        }
-    }
     
     private let name: String
     private let tags: [String]
@@ -75,55 +57,16 @@ public struct PetCell: View {
                     .frame(width: 96, height: 96)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 
-                VStack(alignment: .leading) {
-                    Text(name)
-                        .foregroundColor(.init(appColor: .appTextPrimary))
-                        .font(AppFonts.Sailec.medium.swiftUIFont(fixedSize: 16))
-                    Spacer()
-                    HStack(spacing: 4) {
-                        Text(age)
-                            .foregroundColor(.init(appColor: .appTextPrimary))
-                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                        if !tags.isEmpty {
-                            Text("|")
-                                .foregroundColor(.init(appColor: .appTextPrimary))
-                                .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                            Text(tags.first!)
-                                .foregroundColor(.init(appColor: .appTextPrimary))
-                                .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                        }
-                    }
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    Spacer()
-                    HStack(spacing: 8) {
-                        Image("Pin", bundle: .module)
-                            .frame(width: 16, height: 16)
-                        Text(distance == nil ? "No data" : distance.unsafelyUnwrapped)
-                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                            .foregroundColor(.init(appColor: .appTextPrimary))
-                    }
-                }
+                PetMainInfoStack(
+                    stackType: .list(tags: tags, age: age),
+                    metersAway: distance,
+                    name: name
+                )
                 .padding(.vertical)
                 .padding(.leading)
                 
                 Spacer()
-
-                VStack(alignment: .trailing) {
-                    Text(gender.rawValue.capitalized(with: .current))
-                        .foregroundColor(gender.textColor)
-                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 5)
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(gender.backgroundColor)
-                        )
-                    Spacer()
-                    Text(lastSeen)
-                        .foregroundColor(.init(appColor: .appTextPrimary))
-                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                }
+                GenderStack(gender: gender, additionalText: lastSeen)
                 .padding(.vertical)
             }
             .padding(.horizontal)

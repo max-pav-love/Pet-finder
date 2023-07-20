@@ -8,10 +8,10 @@
 import Foundation
 import UIComponents
 
-struct AnimalMainInfoViewObject: Identifiable {
-    let id = UUID()
+struct AnimalMainInfoViewObject {
+    var id: Int
     let name: String
-    let gender: PetCell.PetGender
+    let gender: PetGender
     let age: String
     let distance: String?
     let lastSeen: String
