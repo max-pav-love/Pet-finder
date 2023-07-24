@@ -8,18 +8,19 @@
 import Foundation
 import Networking
 import SwiftUI
+import Combine
 
 @MainActor
 protocol AnimalsViewModelProtocol: ObservableObject {
     var animals: [AnimalViewObject] { get set }
     var choosenAnimal: AnimalViewObject? { get set }
-    var error: String { get set }
-    var mapperService: AnimalDataMapperProtocol { get }
+    var error: AnimalsViewModel.Errors { get set }
     
     func getToken() async
     
     func getAnimals() async
     func loadMoreContent(currentItem: AnimalViewObject) async
+    func retryRequest() async
     
     func saveColorScheme(_ colorSceheme: ColorScheme)
     func getColorScheme() -> ColorScheme?
@@ -31,36 +32,52 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
     
     @Published var animals: [AnimalViewObject] = []
     @Published var choosenAnimal: AnimalViewObject?
-    @Published var error: String = ""
+    @Published var error: Errors = .none
     
-    let mapperService: AnimalDataMapperProtocol = AnimalDataMapper()
+    private let mapperService: AnimalDataMapperProtocol = AnimalDataMapper()
     
     private var currentPage = 1
     private var totalPages = 0
-    
+        
     func getToken() async {
         if let error = await RequestSender.live.sendTokenRequest() {
-            print(error.localizedDescription)
+            self.error = .authError(error.localizedDescription)
         }
     }
     
     func getAnimals() async {
-        let request = AnimalsRequest(location: NetworkConstants.MOCK_ZIP, page: currentPage.description)
+        let request = AnimalsRequest(
+            location: NetworkConstants.MOCK_ZIP,
+            page: currentPage.description)
         let result = await RequestSender.live.send(request: request)
         switch result {
         case let .success(response):
+            self.error = .networkError("E R R")
             self.animals += mapperService.map(response)
             totalPages = response.pagination.total_pages
         case let .failure(error):
-            self.error = error.localizedDescription
+            self.error = .networkError(error.localizedDescription)
         }
     }
     
     func loadMoreContent(currentItem: AnimalViewObject) async {
-        if currentItem == animals.last, (currentPage + 1) <= totalPages {
+        guard currentPage + 1 <= totalPages else { return error = .pagination }
+        if currentItem == animals.last {
             currentPage += 1
             //            await getAnimals()
         }
+    }
+    
+    func retryRequest() async {
+        switch error {
+        case .authError:
+            await getToken()
+        case .networkError:
+            await getAnimals()
+        default:
+            break
+        }
+        error = .none
     }
     
     func saveColorScheme(_ colorSceheme: ColorScheme) {
@@ -72,7 +89,7 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
             guard savedSceme != "dark" else { return }
             savedSceme = "dark"
         @unknown default:
-            print("ERR")
+            error = .undefined
         }
     }
     
@@ -84,6 +101,40 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
             return .dark
         default:
             return nil
+        }
+    }
+    
+    enum Errors: LocalizedError, Equatable {
+        case authError(String)
+        case networkError(String)
+        case pagination
+        case undefined
+        case none
+        
+        var title: String {
+            switch self {
+            case .authError:
+                return "Authorization error"
+            case .networkError:
+                return "Network Error"
+            case .pagination:
+                return "You have seen all the animals nearby"
+            case .undefined:
+                return "Undefined error"
+            default:
+                return ""
+            }
+        }
+        
+        var errorDescription: String? {
+            switch self {
+            case let .authError(err):
+                return err
+            case let .networkError(err):
+                return err
+            default:
+                return nil
+            }
         }
     }
     

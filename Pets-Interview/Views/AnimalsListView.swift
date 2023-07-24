@@ -11,8 +11,10 @@ import Networking
 
 struct AnimalsListView: View {
     @StateObject private var viewModel = AnimalsViewModel()
-    @Environment(\.colorScheme) var systemColorScheme
     @State var myColorScheme: ColorScheme?
+    @State private var isAlertPresented: Bool = false
+    
+    @Environment(\.colorScheme) var systemColorScheme
     
     var body: some View {
         NavigationView {
@@ -79,6 +81,10 @@ struct AnimalsListView: View {
         .onChange(of: myColorScheme) { scheme in
             viewModel.saveColorScheme(scheme ?? systemColorScheme)
         }
+        .onChange(of: viewModel.error) { val in
+            isAlertPresented = val == .none ? false : true
+        }
+                  
         .onAppear {
             myColorScheme = viewModel.getColorScheme()
             Task {
@@ -87,6 +93,18 @@ struct AnimalsListView: View {
             }
         }
         .colorScheme(myColorScheme ?? systemColorScheme)
+        
+        .alert(isPresented: $isAlertPresented) {
+            Alert(
+                title: Text(viewModel.error.title),
+                message: Text(viewModel.error.errorDescription ?? ""),
+                dismissButton: .cancel() {
+                    Task {
+                        await viewModel.retryRequest()
+                    }
+                }
+            )
+        }
     }
     
 }
