@@ -12,8 +12,8 @@ public struct AnimalsResponse: Decodable {
         public struct Breeds: Decodable {
             public let primary: String
             public let secondary: String?
-            public let mixed: Bool
-            public let unknown: Bool
+            public let mixed: Bool?
+            public let unknown: Bool?
         }
         public struct Colors: Decodable {
             public let primary: String?
@@ -21,7 +21,7 @@ public struct AnimalsResponse: Decodable {
             public let tertiary: String?
         }
         public struct Contact: Decodable {
-            public let email: String
+            public let email: String?
             public let phone: String?
         }
         public struct Photos: Decodable {
@@ -38,7 +38,7 @@ public struct AnimalsResponse: Decodable {
         public let description: String?
         public let breeds: Breeds
         public let colors: Colors
-        public let contact: Contact
+        public let contact: Contact?
         public let photos: [Photos]
         public let tags: [String]
         public let distance: Double

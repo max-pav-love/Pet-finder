@@ -52,7 +52,6 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
         let result = await RequestSender.live.send(request: request)
         switch result {
         case let .success(response):
-            self.error = .networkError("E R R")
             self.animals += mapperService.map(response)
             totalPages = response.pagination.total_pages
         case let .failure(error):
@@ -64,7 +63,7 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
         guard currentPage + 1 <= totalPages else { return error = .pagination }
         if currentItem == animals.last {
             currentPage += 1
-            //            await getAnimals()
+//            await getAnimals()
         }
     }
     

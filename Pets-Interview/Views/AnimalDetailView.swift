@@ -153,7 +153,6 @@ struct AnimalDetailView_Previews: PreviewProvider {
     static var previews: some View {
         AnimalDetailView(
             animal: .init(
-                id: 1,
                 name: "22",
                 description: "Description",
                 gender: .female,
