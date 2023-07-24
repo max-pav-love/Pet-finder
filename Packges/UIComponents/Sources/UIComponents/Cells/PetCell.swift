@@ -11,23 +11,21 @@ import Kingfisher
 public struct PetCell: View {
     
     private let name: String
-    private let tags: [String]
+    private let tags: String
     private let age: String
     private let distance: String?
     private let photo: URL?
     private let gender: PetGender
-    private let lastSeen: String
-    private let action: () -> Void
+    private let publishedAt: String
     
     public init(
         name: String,
-        tags: [String],
+        tags: String,
         age: String,
         distance: String?,
         photo: URL?,
         gender: PetGender,
-        lastSeen: String,
-        action: @escaping () -> Void
+        publishedAt: String
     ) {
         self.name = name
         self.tags = tags
@@ -35,19 +33,10 @@ public struct PetCell: View {
         self.distance = distance
         self.photo = photo
         self.gender = gender
-        self.lastSeen = lastSeen
-        self.action = action
+        self.publishedAt = publishedAt
     }
     
     public var body: some View {
-        Button {
-            action()
-        } label: {
-            label
-        }
-    }
-    
-    private var label: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
                 .foregroundColor(.init(appColor: .appLightBackground))
@@ -66,7 +55,10 @@ public struct PetCell: View {
                 .padding(.leading)
                 
                 Spacer()
-                GenderStack(gender: gender, additionalText: lastSeen)
+                GenderStack(
+                    gender: gender,
+                    additionalText: publishedAt
+                )
                 .padding(.vertical)
             }
             .padding(.horizontal)
@@ -74,19 +66,19 @@ public struct PetCell: View {
         .frame(height: 120)
         .padding(.horizontal)
     }
-    
+        
 }
 
 struct PetCell_Previews: PreviewProvider {
     static var previews: some View {
         PetCell(
             name: "Parkinson",
-            tags: ["Playful"],
+            tags: "Playful",
             age: "2yrs",
             distance: "381m away",
             photo: nil,
             gender: .female,
-            lastSeen: "13 min ago"
-        ) { }
+            publishedAt: "13 min ago"
+        )
     }
 }

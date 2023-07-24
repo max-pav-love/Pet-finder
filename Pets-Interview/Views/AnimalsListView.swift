@@ -11,7 +11,8 @@ import Networking
 
 struct AnimalsListView: View {
     @StateObject private var viewModel = AnimalsViewModel()
-    @Environment(\.colorScheme) var scheme
+    @Environment(\.colorScheme) var systemColorScheme
+    @State var myColorScheme: ColorScheme?
     
     var body: some View {
         NavigationView {
@@ -35,7 +36,7 @@ struct AnimalsListView: View {
                             }
                             .padding(.top, 47)
                             Spacer()
-                            ThemeChanger()
+                            ThemeChanger(colorScheme: $myColorScheme)
                         }
                         Text("Nearby results")
                             .foregroundColor(.init(appColor: AppColors.appTextPrimary))
@@ -51,13 +52,20 @@ struct AnimalsListView: View {
                             } label: {
                                 PetCell(
                                     name: pet.name,
-                                    tags: pet.tags,
+                                    tags: pet.tags.firstTag,
                                     age: pet.age,
                                     distance: pet.distance,
                                     photo: pet.photo,
                                     gender: pet.gender,
-                                    lastSeen: "13 min ago"
-                                ) { }
+                                    publishedAt: pet.publishedAt
+                                )
+                                .onAppear {
+                                    Task {
+                                        if pet == viewModel.animals.last {
+                                            await viewModel.loadMoreContent(currentItem: pet)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -68,16 +76,17 @@ struct AnimalsListView: View {
                 )
             }
         }
+        .onChange(of: myColorScheme) { scheme in
+            viewModel.saveColorScheme(scheme ?? systemColorScheme)
+        }
         .onAppear {
-            // TODO: - Fix
-            UserDefaults.standard.set(nil, forKey: "jwt_token")
+            myColorScheme = viewModel.getColorScheme()
             Task {
-                guard await RequestSender.live.sendTokenRequest() == nil else {
-                    return
-                }
+                await viewModel.getToken()
                 await viewModel.getAnimals()
             }
         }
+        .colorScheme(myColorScheme ?? systemColorScheme)
     }
     
 }

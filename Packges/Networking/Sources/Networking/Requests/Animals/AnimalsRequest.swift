@@ -6,11 +6,13 @@
 //
 
 public struct AnimalsRequest: RequestProtocol {
-    public var endpoint: Endpoint = .animals
+    public var endpoint: Endpoint
     public var method: HttpMethod = .get
     public let response = AnimalsResponse.self
-    
+        
     public func parameters() -> [String : Any]? { nil }
     
-    public init() { }
+    public init(location: String, page: String) {
+        endpoint = .animals(location: location, page: page)
+    }
 }

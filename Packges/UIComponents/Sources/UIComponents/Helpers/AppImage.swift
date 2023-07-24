@@ -17,7 +17,7 @@ public struct AppImage: View {
     
     public var body: some View {
         if url == nil {
-            Image("No_Image", bundle: .module)
+            Image(appImage: .No_Image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         } else {

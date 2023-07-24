@@ -36,14 +36,9 @@ public struct PetMainInfoStack: View {
                     Text(age)
                         .foregroundColor(.init(appColor: .appTextPrimary))
                         .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    if !tags.isEmpty {
-                        Text("|")
-                            .foregroundColor(.init(appColor: .appTextPrimary))
-                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                        Text(tags.first!)
-                            .foregroundColor(.init(appColor: .appTextPrimary))
-                            .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
-                    }
+                    Text(tags)
+                        .foregroundColor(.init(appColor: .appTextPrimary))
+                        .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
                 }
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
@@ -59,7 +54,7 @@ public struct PetMainInfoStack: View {
     }
     private var distanceStack: some View {
         HStack(spacing: 8) {
-            Image("Pin", bundle: .module)
+            Image(appImage: .Pin)
                 .frame(width: 16, height: 16)
             Text(metersAway == nil ? "??? m away" : metersAway.unsafelyUnwrapped)
                 .font(AppFonts.Sailec.regular.swiftUIFont(fixedSize: 12))
@@ -71,7 +66,7 @@ public struct PetMainInfoStack: View {
 struct PetMainInfoStack_Previews: PreviewProvider {
     static var previews: some View {
         PetMainInfoStack(
-            stackType: .list(tags: ["22"], age: "2yrs"),
+            stackType: .list(tags: "22", age: "2yrs"),
             metersAway: "12 m",
             name: "Peterson"
         )

@@ -19,4 +19,5 @@ public enum AppColors: String {
     case appTextBlue
     case appTextPrimary
     case appTextSecondary
+    case appStroke
 }
