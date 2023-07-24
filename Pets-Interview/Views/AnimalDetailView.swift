@@ -20,9 +20,9 @@ struct AnimalDetailView: View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
                 AppImage(url: animal.photo)
-                    .clipped()
                     .frame(width: UIScreen.main.bounds.width)
                     .frame(minHeight: 260)
+                    .clipped()
                     .edgesIgnoringSafeArea(.top)
                 header
             }
@@ -32,7 +32,6 @@ struct AnimalDetailView: View {
                     animalInfo
                     quickInfoCells
                     ownerInfo
-                    
                     ActionButton(title: "Adopt me") { }
                         .padding(.vertical, 35)
                 }
@@ -44,52 +43,6 @@ struct AnimalDetailView: View {
         .navigationBarHidden(true)
         .background(Color(appColor: .appBackground))
         .edgesIgnoringSafeArea(.bottom)
-        
-//        VStack(alignment: .leading) {
-//            ZStack(alignment: .top) {
-//                AppImage(url: animal.photo)
-//                    .frame(width: UIScreen.main.bounds.width, height: 350)
-//                header
-//            }
-//            ScrollView(showsIndicators: false) {
-//                mainInfo
-//                animalInfo
-//                quickInfoCells
-//                ownerInfo
-//                ActionButton(title: "Adopt me") { }
-//                    .padding(.top, 56)
-//                    .padding(.bottom, 64)
-//            }
-//            .padding(.horizontal, 24)
-//            .padding(.bottom, 16)
-//        }
-//        .background(Color(appColor: .appBackground))
-//        .navigationBarBackButtonHidden(true)
-//        .ignoresSafeArea()
-    }
-    
-    private var oldBody: some View {
-        VStack(alignment: .leading) {
-            ZStack(alignment: .top) {
-                AppImage(url: animal.photo)
-                    .frame(width: UIScreen.main.bounds.width, height: 350)
-                header
-            }
-            ScrollView(showsIndicators: false) {
-                mainInfo
-                animalInfo
-                quickInfoCells
-                ownerInfo
-                ActionButton(title: "Adopt me") { }
-                    .padding(.top, 56)
-                    .padding(.bottom, 64)
-            }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 16)
-        }
-        .background(Color(appColor: .appBackground))
-        .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea()
     }
     
     private var header: some View {
@@ -123,7 +76,7 @@ struct AnimalDetailView: View {
             Spacer()
             GenderStack(
                 gender: animal.gender,
-                additionalText: animal.tags.filter { $0.count <= 8 }.joined(separator: " | ")
+                additionalText: animal.tags.detailTags
             )
         }
     }
@@ -208,7 +161,7 @@ struct AnimalDetailView_Previews: PreviewProvider {
                 distance: "12",
                 publishedAt: "12",
                 photo: nil,
-                tags: [],
+                tags: .init(firstTag: "Good", detailTags: "Good"),
                 ownersPhone: "+222",
                 ownersEmail: "+111",
                 color: "Red",

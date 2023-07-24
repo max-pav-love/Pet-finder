@@ -11,7 +11,7 @@ import Kingfisher
 public struct PetCell: View {
     
     private let name: String
-    private let tags: [String]
+    private let tags: String
     private let age: String
     private let distance: String?
     private let photo: URL?
@@ -20,7 +20,7 @@ public struct PetCell: View {
     
     public init(
         name: String,
-        tags: [String],
+        tags: String,
         age: String,
         distance: String?,
         photo: URL?,
@@ -55,7 +55,10 @@ public struct PetCell: View {
                 .padding(.leading)
                 
                 Spacer()
-                GenderStack(gender: gender, additionalText: publishedAt)
+                GenderStack(
+                    gender: gender,
+                    additionalText: publishedAt
+                )
                 .padding(.vertical)
             }
             .padding(.horizontal)
@@ -70,7 +73,7 @@ struct PetCell_Previews: PreviewProvider {
     static var previews: some View {
         PetCell(
             name: "Parkinson",
-            tags: ["Playful"],
+            tags: "Playful",
             age: "2yrs",
             distance: "381m away",
             photo: nil,

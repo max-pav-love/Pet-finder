@@ -76,7 +76,6 @@ public final class RequestSender: RequestSenderProtocol {
     }
     
     public func sendTokenRequest() async -> Error? {
-        guard UserDefaults.standard.value(forKey: "jwt_token") == nil else { return nil }
         let request = TokenRequest()
         let result = await send(request: request)
         switch result {

@@ -9,6 +9,10 @@ import Foundation
 import UIComponents
 
 struct AnimalViewObject: Equatable {
+    struct Tags: Equatable {
+        let firstTag: String
+        let detailTags: String
+    }
     var id: Int
     let name: String
     let description: String
@@ -17,7 +21,7 @@ struct AnimalViewObject: Equatable {
     let distance: String?
     let publishedAt: String
     let photo: URL?
-    let tags: [String]
+    let tags: Tags
     let ownersPhone: String?
     let ownersEmail: String?
     let color: String

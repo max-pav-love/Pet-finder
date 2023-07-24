@@ -27,7 +27,7 @@ public enum PetGender: String {
 }
 
 public enum PetMainInfoStackType {
-    case list(tags: [String], age: String)
+    case list(tags: String, age: String)
     case detail(lastSeen: String)
     
     var nameFont: SwiftUI.Font {

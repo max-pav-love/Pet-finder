@@ -44,5 +44,9 @@ public struct AnimalsResponse: Decodable {
         public let distance: Double
         public let published_at: String
     }
+    public struct Pagination: Decodable {
+        public let total_pages: Int
+    }
     public let animals: [Animal]
+    public let pagination: Pagination
 }

@@ -9,16 +9,17 @@ import Foundation
 import SwiftUI
 
 public struct ThemeChanger: View {
-    @Environment(\.colorScheme) var scheme
+    @Binding private var colorScheme: ColorScheme?
     
-    public init() { }
-    
+    public init(colorScheme: Binding<ColorScheme?>) {
+        _colorScheme = colorScheme
+    }
+        
     public var body: some View {
         Button {
-            preferredColorScheme(scheme == .dark ? .light : .light)
+            colorScheme = colorScheme == .light ? .dark : .light
         } label: {
-            Image(appImage: scheme == .dark ? .Dark : .Light)
+            Image(appImage: colorScheme == .dark ? .Dark : .Light)
         }
-        .environment(\.colorScheme, scheme == .dark ? .light : .dark)
     }
 }
