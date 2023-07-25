@@ -48,16 +48,8 @@ struct AnimalsListView: View {
                             .padding(.bottom, 20)
                     }
                     .padding(.horizontal, 24)
-                    
-                    PullDownScrollView {
-                        AnimalsListView()
-                    } onRefresh: { control in
-                        Task {
-                            await viewModel.getAnimals()
-                            control.endRefreshing()
-                        }
-                    }
-                    .ignoresSafeArea()
+                    AnimalsListView()
+                        .ignoresSafeArea()
                 }
                 .background(
                     Color(appColor: .appBackground)
@@ -76,7 +68,7 @@ struct AnimalsListView: View {
             myColorScheme = viewModel.getColorScheme()
             Task {
                 await viewModel.getToken()
-                await viewModel.getAnimals()
+                await viewModel.getAnimals(page: 1)
             }
         }
         .colorScheme(myColorScheme ?? systemColorScheme)
@@ -95,22 +87,26 @@ struct AnimalsListView: View {
     }
     
     private func AnimalsListView() -> some View {
-        ForEach(viewModel.animals, id: \.id) { pet in
-            NavigationLink {
-                AnimalDetailView(animal: pet)
-            } label: {
-                PetCell(
-                    name: pet.name,
-                    tags: pet.tags.firstTag,
-                    age: pet.age,
-                    distance: pet.distance,
-                    photo: pet.photo,
-                    gender: pet.gender,
-                    publishedAt: pet.publishedAt)
-                .onAppear {
-                    Task {
-                        if pet == viewModel.animals.last {
-                            await viewModel.loadMoreContent(currentItem: pet)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.animals, id: \.id) { pet in
+                    NavigationLink {
+                        AnimalDetailView(animal: pet)
+                    } label: {
+                        PetCell(
+                            name: pet.name,
+                            tags: pet.tags.firstTag,
+                            age: pet.age,
+                            distance: pet.distance,
+                            photo: pet.photo,
+                            gender: pet.gender,
+                            publishedAt: pet.publishedAt)
+                        .onAppear {
+                            Task {
+                                if pet == viewModel.animals.last {
+                                    await viewModel.loadMoreContent()
+                                }
+                            }
                         }
                     }
                 }

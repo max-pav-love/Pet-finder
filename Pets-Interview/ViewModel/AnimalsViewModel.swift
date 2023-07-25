@@ -18,8 +18,8 @@ protocol AnimalsViewModelProtocol: ObservableObject {
     
     func getToken() async
     
-    func getAnimals() async
-    func loadMoreContent(currentItem: AnimalViewObject) async
+    func getAnimals(page: Int, request: AnimalsRequest?) async
+    func loadMoreContent() async
     func retryRequest() async
     
     func saveColorScheme(_ colorSceheme: ColorScheme)
@@ -45,8 +45,8 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
         }
     }
     
-    func getAnimals() async {
-        let request = AnimalsRequest(
+    func getAnimals(page: Int, request: AnimalsRequest? = nil) async {
+        let request = request ?? AnimalsRequest(
             location: NetworkConstants.MOCK_ZIP,
             page: currentPage.description)
         let result = await RequestSender.live.send(request: request)
@@ -54,25 +54,23 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
         case let .success(response):
             self.animals += mapperService.map(response)
             totalPages = response.pagination.total_pages
+            currentPage += 1
         case let .failure(error):
-            self.error = .networkError(error.localizedDescription)
+            self.error = .networkError(error.localizedDescription, request)
         }
     }
     
-    func loadMoreContent(currentItem: AnimalViewObject) async {
+    func loadMoreContent() async {
         guard currentPage + 1 <= totalPages else { return error = .pagination }
-        if currentItem == animals.last {
-            currentPage += 1
-//            await getAnimals()
-        }
+        await getAnimals(page: currentPage + 1)
     }
     
     func retryRequest() async {
         switch error {
         case .authError:
             await getToken()
-        case .networkError:
-            await getAnimals()
+        case let .networkError(_, request):
+            await getAnimals(page: currentPage, request: request)
         default:
             break
         }
@@ -105,7 +103,7 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
     
     enum Errors: LocalizedError, Equatable {
         case authError(String)
-        case networkError(String)
+        case networkError(String, AnimalsRequest)
         case pagination
         case undefined
         case none
@@ -129,11 +127,15 @@ final class AnimalsViewModel: AnimalsViewModelProtocol {
             switch self {
             case let .authError(err):
                 return err
-            case let .networkError(err):
+            case let .networkError(err, _):
                 return err
             default:
                 return nil
             }
+        }
+        
+        static func == (lhs: AnimalsViewModel.Errors, rhs: AnimalsViewModel.Errors) -> Bool {
+            lhs.errorDescription == rhs.errorDescription
         }
     }
     
