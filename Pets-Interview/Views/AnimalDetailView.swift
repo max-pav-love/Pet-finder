@@ -120,12 +120,9 @@ struct AnimalDetailView: View {
                     .frame(width: 60, height: 60)
                     .cornerRadius(32)
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(animal.ownersEmail ?? "")
+                    Text(animal.ownersEmail ?? "No owner info")
                         .font(AppFonts.Sailec.medium.swiftUIFont(size: 14))
                         .foregroundColor(.init(appColor: .appTextPrimary))
-                    Text(animal.ownersPhone ?? "")
-                        .font(AppFonts.Sailec.regular.swiftUIFont(size: 12))
-                        .foregroundColor(.init(appColor: .appTextSecondary))
                 }
                 .padding(.trailing, 16)
                 
