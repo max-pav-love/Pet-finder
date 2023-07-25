@@ -8,7 +8,7 @@
 - Pet details
 - Pagination
 - Dark/Light modes
-- Code segregated from packages
+- The code is divided into packages
 
 ## Screenshots
 - In a white and dark theme
