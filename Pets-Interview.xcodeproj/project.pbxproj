@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		B65C37F52A605C3300BB4B36 /* AnimalsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C37F42A605C3300BB4B36 /* AnimalsListView.swift */; };
 		B65C37FC2A6133AF00BB4B36 /* AnimalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65C37FB2A6133AF00BB4B36 /* AnimalDetailView.swift */; };
-		B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B69ABE972A5FE3CB0031C89D /* UIComponents */; };
 		B69ABEAC2A603C440031C89D /* AnimalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEAB2A603C440031C89D /* AnimalsViewModel.swift */; };
 		B69ABEAF2A603D160031C89D /* AnimalDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEAE2A603D160031C89D /* AnimalDataMapper.swift */; };
 		B69ABEB12A6053F20031C89D /* AnimalViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ABEB02A6053F20031C89D /* AnimalViewObject.swift */; };
+		B6DBA7F72A6EF15E0043D312 /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBA7F62A6EF15E0043D312 /* UIComponents */; };
+		B6DBA7F92A6EF1710043D312 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBA7F82A6EF1710043D312 /* Networking */; };
 		B6E1EC5C2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E1EC5B2A5EFA8E00DDEDA3 /* Pets_InterviewApp.swift */; };
 		B6E1EC602A5EFA8E00DDEDA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC5F2A5EFA8E00DDEDA3 /* Assets.xcassets */; };
 		B6E1EC642A5EFA8E00DDEDA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E1EC632A5EFA8E00DDEDA3 /* Preview Assets.xcassets */; };
-		B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = B6E1EC6D2A5F134400DDEDA3 /* Networking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B69ABE982A5FE3CB0031C89D /* UIComponents in Frameworks */,
-				B6E1EC6E2A5F134400DDEDA3 /* Networking in Frameworks */,
+				B6DBA7F92A6EF1710043D312 /* Networking in Frameworks */,
+				B6DBA7F72A6EF15E0043D312 /* UIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +162,8 @@
 			);
 			name = "Pets-Interview";
 			packageProductDependencies = (
-				B6E1EC6D2A5F134400DDEDA3 /* Networking */,
-				B69ABE972A5FE3CB0031C89D /* UIComponents */,
+				B6DBA7F62A6EF15E0043D312 /* UIComponents */,
+				B6DBA7F82A6EF1710043D312 /* Networking */,
 			);
 			productName = "Pets-Interview";
 			productReference = B6E1EC582A5EFA8E00DDEDA3 /* Pets-Interview.app */;
@@ -448,11 +448,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B69ABE972A5FE3CB0031C89D /* UIComponents */ = {
+		B6DBA7F62A6EF15E0043D312 /* UIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIComponents;
 		};
-		B6E1EC6D2A5F134400DDEDA3 /* Networking */ = {
+		B6DBA7F82A6EF1710043D312 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
 		};

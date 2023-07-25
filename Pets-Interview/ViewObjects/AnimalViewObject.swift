@@ -8,12 +8,12 @@
 import Foundation
 import UIComponents
 
-struct AnimalViewObject: Equatable {
+struct AnimalViewObject: Equatable, Identifiable {
     struct Tags: Equatable {
         let firstTag: String
         let detailTags: String
     }
-    var id: Int
+    var id = UUID()
     let name: String
     let description: String
     let gender: PetGender

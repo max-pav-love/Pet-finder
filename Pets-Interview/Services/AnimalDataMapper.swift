@@ -24,7 +24,6 @@ final class AnimalDataMapper: AnimalDataMapperProtocol {
         data.animals
             .map {
                 AnimalViewObject(
-                    id: $0.id,
                     name: $0.name,
                     description: map($0.description),
                     gender: $0.gender == "Male" ? .male : .female,
@@ -33,8 +32,8 @@ final class AnimalDataMapper: AnimalDataMapperProtocol {
                     publishedAt: map($0.published_at),
                     photo: $0.photos.isEmpty ? nil : $0.photos[0].medium,
                     tags: map($0.tags),
-                    ownersPhone: $0.contact.phone,
-                    ownersEmail: $0.contact.email,
+                    ownersPhone: $0.contact?.phone,
+                    ownersEmail: $0.contact?.email,
                     color: map($0.colors),
                     size: $0.size
                 )

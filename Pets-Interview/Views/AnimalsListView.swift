@@ -11,8 +11,11 @@ import Networking
 
 struct AnimalsListView: View {
     @StateObject private var viewModel = AnimalsViewModel()
-    @Environment(\.colorScheme) var systemColorScheme
     @State var myColorScheme: ColorScheme?
+    @State private var isAlertPresented: Bool = false
+    @State private var isPullToRefreshEnabled: Bool = false
+    
+    @Environment(\.colorScheme) var systemColorScheme
     
     var body: some View {
         NavigationView {
@@ -45,30 +48,8 @@ struct AnimalsListView: View {
                             .padding(.bottom, 20)
                     }
                     .padding(.horizontal, 24)
-                    ScrollView(showsIndicators: false) {
-                        ForEach(viewModel.animals, id: \.id) { pet in
-                            NavigationLink {
-                                AnimalDetailView(animal: pet)
-                            } label: {
-                                PetCell(
-                                    name: pet.name,
-                                    tags: pet.tags.firstTag,
-                                    age: pet.age,
-                                    distance: pet.distance,
-                                    photo: pet.photo,
-                                    gender: pet.gender,
-                                    publishedAt: pet.publishedAt
-                                )
-                                .onAppear {
-                                    Task {
-                                        if pet == viewModel.animals.last {
-                                            await viewModel.loadMoreContent(currentItem: pet)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    AnimalsListView()
+                        .ignoresSafeArea()
                 }
                 .background(
                     Color(appColor: .appBackground)
@@ -79,14 +60,58 @@ struct AnimalsListView: View {
         .onChange(of: myColorScheme) { scheme in
             viewModel.saveColorScheme(scheme ?? systemColorScheme)
         }
+        .onChange(of: viewModel.error) { val in
+            isAlertPresented = val == .none ? false : true
+        }
+        
         .onAppear {
             myColorScheme = viewModel.getColorScheme()
             Task {
                 await viewModel.getToken()
-                await viewModel.getAnimals()
+                await viewModel.getAnimals(page: 1)
             }
         }
         .colorScheme(myColorScheme ?? systemColorScheme)
+        
+        .alert(isPresented: $isAlertPresented) {
+            Alert(
+                title: Text(viewModel.error.title),
+                message: Text(viewModel.error.errorDescription ?? ""),
+                dismissButton: .cancel() {
+                    Task {
+                        await viewModel.retryRequest()
+                    }
+                }
+            )
+        }
+    }
+    
+    private func AnimalsListView() -> some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.animals, id: \.id) { pet in
+                    NavigationLink {
+                        AnimalDetailView(animal: pet)
+                    } label: {
+                        PetCell(
+                            name: pet.name,
+                            tags: pet.tags.firstTag,
+                            age: pet.age,
+                            distance: pet.distance,
+                            photo: pet.photo,
+                            gender: pet.gender,
+                            publishedAt: pet.publishedAt)
+                        .onAppear {
+                            Task {
+                                if pet == viewModel.animals.last {
+                                    await viewModel.loadMoreContent()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }
